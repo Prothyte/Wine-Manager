@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+
+  wine-ui:
+    build: ./frontend
+    container_name: wine-ui
+    ports:
+      - 4200:80
+
+  wine-app:
+    build: ./backend
+    container_name: wine-app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - ./backend/winemanager_backend/.env.dev
+    environment:
+      - DB_SERVER=wine-db
+
+  wine-db:
+    image: postgres:13.0-alpine
+    container_name: wine-db
+    volumes:
+      - wine-data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=wine_manager
+      - POSTGRES_PASSWORD=wine_manager
+      - POSTGRES_DB=wine_manager_dev
+
+volumes:
+  wine-data:
