@@ -1,11 +1,12 @@
 FROM node:14-alpine as angular
 
-WORKDIR /usr/src/app
+RUN mkdir /opt/winemanager_frontend
 
-COPY . .
+WORKDIR /opt/winemanager_frontend
+
+COPY ./winemanager_frontend/* /opt/winemanager_frontend/
 
 RUN npm install
-RUN npm run build
 
 FROM nginx:alpine
-COPY --from=angular /app/dist/app /usr/share/nginx/html
+COPY --from=angular /opt/winemanager_frontend /usr/share/nginx/html

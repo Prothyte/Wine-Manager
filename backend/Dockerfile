@@ -3,10 +3,7 @@ FROM python:3.9.6-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /opt/winemanager_backend && \
-    useradd backend && \
-        addgroup backend && \
-            addgroup backend backend
+RUN mkdir /opt/winemanager_backend 
 
 WORKDIR /opt/winemanager_backend
 
@@ -17,8 +14,6 @@ RUN apk update \
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
-USER backend
 
 RUN sed -i "s/\r$//g" /opt/winemanager_backend/entrypoint.sh
 RUN chmod +x /opt/winemanager_backend/entrypoint.sh
