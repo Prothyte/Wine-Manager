@@ -5,18 +5,20 @@ services:
     build: ./frontend
     container_name: wine-ui
     ports:
-      - 4200:4200
+      - 4200:80
 
   wine-app:
     build: ./backend
     container_name: wine-app
     command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/backend
     ports:
       - 8000:8000
     env_file:
       - ./backend/winemanager_backend/.env.dev
-    environment:
-      - DB_SERVER=wine-db
+    depends_on:
+      - wine-db
 
   wine-db:
     image: postgres:13.0-alpine
