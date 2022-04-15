@@ -7,6 +7,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PagesComponent } from './pages/pages.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { AboutComponent } from './pages/about/about.component';
+import { CellarComponent } from './pages/cellar/cellar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { MenuComponent } from './pages/menu/menu.component';
     NavbarComponent,
     PagesComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    AboutComponent,
+    CellarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

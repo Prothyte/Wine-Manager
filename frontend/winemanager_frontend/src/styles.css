@@ -55,4 +55,6 @@ button:disabled {
 
 * {
     font-family: Arial, Helvetica, sans-serif;
+    padding: 30;
+    margin: 30;
 }
