@@ -1,10 +1,12 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255, null=True)
-    slug = models.SlugField(max_length=255, unique=True,null=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255,default="")
+    slug = models.SlugField(max_length=255, unique=True,default="")
 
     class Meta:
         verbose_name_plural = "categories"
@@ -12,11 +14,12 @@ class Category(models.Model):
     def get_absolute_url(self):
         pass
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.name
 
 
 class Product(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.ForeignKey(
         Category, related_name="product", on_delete=models.CASCADE, null=True)
     created_by = models.ForeignKey(
@@ -34,5 +37,5 @@ class Product(models.Model):
     class Meta:
         ordering = ("-created",)
     
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title

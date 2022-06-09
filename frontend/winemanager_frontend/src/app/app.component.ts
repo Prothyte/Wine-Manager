@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable, OnInit, ViewEncapsulation } from '@angular/core';
+import { HamburgerService } from './navbar/hamburger.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'winemanager';
+  
+  constructor(private hamburgerService: HamburgerService) {}
+  ngOnInit() {
+    this.hamburgerService.hamburgerClick();
+  }
 }
+
