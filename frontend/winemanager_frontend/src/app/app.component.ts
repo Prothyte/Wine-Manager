@@ -10,10 +10,10 @@ import { HamburgerService } from './navbar/hamburger.service';
 })
 export class AppComponent implements OnInit{
   title = 'winemanager';
-  
+
   constructor(private hamburgerService: HamburgerService) {}
+
   ngOnInit() {
     this.hamburgerService.hamburgerClick();
-  }
+    };
 }
-
